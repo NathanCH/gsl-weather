@@ -16,12 +16,12 @@ class WeatherRequest {
 	makeRequest(position, callback) {
 		Request
 			.get(this.buildRequest(position))
-			.end(function(error, response) {
+			.end((error, response) => {
 				if(error !== null) {
 					return false;
 				}
 
-				callback(response.body);
+				callback(this.parseResponse(response));
 			});
 	}
 	buildRequest(position) {
@@ -29,6 +29,27 @@ class WeatherRequest {
 		var lon = position.coords.longitude;
 
 		return this.endPoint + `?lat=${lat}&lon=${lon}&units=metric&appid=` + this.key;
+	}
+	parseResponse(response) {
+		return {
+			city: response.body.name,
+			weather: response.body.weather[0].main,
+			temperature: response.body.main.temp,
+			table: [
+				{ 
+					label: 'High',
+					value: response.body.main.temp_max
+				},
+				{ 
+					label: 'Low',
+					value: response.body.main.temp_min
+				},
+				{ 
+					label: 'Humidity',
+					value: response.body.main.humidity
+				}
+			]
+		}
 	}
 }
 

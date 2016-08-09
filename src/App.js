@@ -1,37 +1,32 @@
 import React, { Component } from 'react';
 import WeatherRequest from './WeatherRequest';
+import Loading from './Loading';
+import Hero from './Hero';
+import Table from './Table';
 import './App.scss';
 
 class App extends Component{
 	constructor() {
 		super();
 		this.state = {
-			city: '',
-			temperature: '',
-			weather: '',
-			desc: ''
+			data: null
 		}
 	}
 	componentDidMount() {
 		new WeatherRequest(response => {
 			this.setState({
-				city: response.name,
-				temperature: response.main.temp,
-				weather: response.weather[0].main,
-				desc: response.weather[0].description
+				data: response
 			});
 		});
 	}
 	render() {
-
+		if(!this.state.data) {
+			return <Loading />;
+		}
 		return (
 			<div className="App">
-				<ul>
-					<li>{this.state.city}</li>
-					<li>{this.state.temperature}</li>
-					<li>{this.state.weather}</li>
-					<li>{this.state.desc}</li>
-				</ul>
+				<Hero data={this.state.data} />
+				<Table data={this.state.data} />
 			</div>
 		)
 	}
