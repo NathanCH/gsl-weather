@@ -5,8 +5,8 @@ class TableRow extends Component{
 	render() {
 		return(
 			<tr>
-				<td>{this.props.label}</td>
-				<td>{this.props.value}</td>
+				<td className="Table__cell Table__cell--bold">{this.props.label}</td>
+				<td className="Table__cell Table__cell--right">{this.props.value}</td>
 			</tr>
 		)
 	}

@@ -7,8 +7,9 @@ Get current and upcoming weather for a given location.
 Requires npm and NodeJS.
 
 * Webpack
-* Babel
+* Babel (ES6)
 * React
+* SCSS
 
 ## Build
 
@@ -18,4 +19,4 @@ Install dependencies:
 
 Build application:
 
-    npm run dev
+    npm run build

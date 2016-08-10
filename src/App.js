@@ -21,7 +21,11 @@ class App extends Component{
 	}
 	render() {
 		if(!this.state.data) {
-			return <Loading />;
+			return (
+				<div className="App">
+					<Loading />
+				</div>
+			);
 		}
 		return (
 			<div className="App">
