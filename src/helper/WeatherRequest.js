@@ -23,12 +23,18 @@ class WeatherRequest {
 
 		// Check for HTML5 geolocation api.
 		if(!navigator.geolocation) {
-			return false;
+			throw new Error('Geolocation not supported.');
 		}
 
 		// Make request using geolocation latitude/longitude.
 		navigator.geolocation.getCurrentPosition(position => {
-			this.makeRequest(position, callback);
+			this.makeRequest(position)
+				.then((response) => {
+					callback(this.parseResponse(response))
+				})
+				.catch(() => {
+					throw new Error('Could not make request.');
+				});
 		});
 	}
 
@@ -39,16 +45,18 @@ class WeatherRequest {
 	 * @param  function  callback
 	 * @return void
 	 */
-	makeRequest(position, callback) {
-		Request
-			.get(this.buildHttpRequest(position))
-			.end((error, response) => {
-				if(error !== null) {
-					return false;
-				}
+	makeRequest(position) {
+		return new Promise((resolve, reject) => {
+			Request
+				.get(this.buildHttpRequest(position))
+				.end((error, response) => {
+					if(error !== null) {
+						reject();
+					}
 
-				callback(this.parseResponse(response));
-			});
+					resolve(response);
+				});
+		});
 	}
 
 	/**
