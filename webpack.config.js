@@ -22,7 +22,7 @@ var config = {
 				]
 			},
 			{
-				test: /\.js?/,
+				test: /\.jsx?/,
 				include: APP_DIR,
 				loader: 'babel'
 			}
