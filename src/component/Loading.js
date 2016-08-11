@@ -11,7 +11,7 @@ class Loading extends Component{
 	render() {
 		return (
 			<div className="Loading">
-				Loading
+				<i className="fa fa-cog fa-spin"></i>
 			</div>
 		);
 	}

@@ -1,10 +1,18 @@
 .App{
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	position: relative;
+	background: white;
 	max-width: 400px;
 	margin: 0 auto;
 	font-family: "Lato", sans-serif;
+	animation: fadein 1s;
+}
+
+.Data{
+	position: relative;
+	min-height: 325px;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

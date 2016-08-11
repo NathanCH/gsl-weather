@@ -3,6 +3,12 @@ import TableRow from './TableRow';
 import './Table.scss';
 
 class Table extends Component{
+
+	/**
+	 * Render table view.
+	 * 
+	 * @return <React DOM />
+	 */
 	render() {
 		var rows = [];
 
@@ -15,6 +21,9 @@ class Table extends Component{
 		
 		return (
 			<table className="Table">
+				<thead>
+					<TableRow label={this.props.title} />
+				</thead>
 				<tbody>
 					{rows}
 				</tbody>

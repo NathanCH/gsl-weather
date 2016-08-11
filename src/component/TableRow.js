@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import './Table.scss';
 
 class TableRow extends Component{
+
+	/**
+	 * Render table row.
+	 * 
+	 * @return <React DOM />
+	 */
 	render() {
 		return(
 			<tr>

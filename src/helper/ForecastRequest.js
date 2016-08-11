@@ -1,6 +1,7 @@
 import Request from 'superagent';
+import moment from 'moment';
 
-class WeatherRequest {
+class ForecastRequest {
 
 	/**
 	 * Set API config
@@ -14,7 +15,7 @@ class WeatherRequest {
 		}
 
 		this.location = location;
-		this.endPoint = 'http://api.openweathermap.org/data/2.5/weather';
+		this.endPoint = 'http://api.openweathermap.org/data/2.5/forecast/daily';
 		this.key = '345dcf974d1485b4f8fc57cbb8f7a44d';
 	}
 
@@ -30,7 +31,7 @@ class WeatherRequest {
 				callback(this.parseResponse(response));
 			})
 			.catch(() => {
-				throw new Error('Could not make weather request.');
+				throw new Error('Could not make forecast request.');
 			});
 	}
 
@@ -69,34 +70,30 @@ class WeatherRequest {
 	 * @return object  parsed response
 	 */
 	parseResponse(response) {
+
+		var formatted = [];
+		
+		response.body.list.forEach((elm, index) => {
+			formatted.push({
+				label: this.convertDate(elm.dt),
+				value: elm.weather[0].main + ' with a high of ' + Math.round(elm.temp.max) + '°'
+			})
+		});
+
 		return {
-			city: response.body.name,
-			weather: response.body.weather[0].main,
-			temperature: response.body.main.temp,
-			table: [
-				{ 
-					label: 'High',
-					value: Math.round(response.body.main.temp_max)
-				},
-				{ 
-					label: 'Low',
-					value: Math.round(response.body.main.temp_min)
-				},
-				{ 
-					label: 'Humidity',
-					value: response.body.main.humidity + '%'
-				},
-				{
-					label: 'Wind Speed',
-					value: response.body.wind.speed	
-				},
-				{
-					label: 'Cloud Coverage',
-					value: response.body.clouds.all + '%'
-				}
-			]
-		}
+			table: formatted
+		};
+	}
+
+	/**
+	 * Convert timestamp using Moment JS
+	 * 
+	 * @param  string timestamp
+	 * @return string 
+	 */
+	convertDate(timestamp) {
+		return moment.unix(timestamp).format('MMM D');
 	}
 }
 
-export default WeatherRequest;
+export default ForecastRequest;

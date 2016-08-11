@@ -1,12 +1,12 @@
 import chai from 'chai';
 import path from 'path';
-import WeatherRequest from '../src/helper/WeatherRequest';
+import ForecastRequest from '../src/helper/ForecastRequest';
 
 chai.should();
 
-describe('WeatherRequestTest', function() {
+describe('ForecastRequestTest', function() {
 
-	let weatherRequest;
+	let forecastRequest;
 	let latlng = {
 		lat: 29,
 		lng: -122
@@ -14,28 +14,28 @@ describe('WeatherRequestTest', function() {
 	let expect = chai.expect;
 
 	beforeEach(function() {
-		weatherRequest = new WeatherRequest(latlng);
+		forecastRequest = new ForecastRequest(latlng);
 	});
 
 	it('Should have a location set.', function() {
 		expect(function() {
-			new WeatherRequest();
+			new ForecastRequest();
 		}).to.throw(Error);
 	});
 
 	it('Should have an end point and API key.', function() {
-		weatherRequest.endPoint.should.exist;
-		weatherRequest.key.should.exist;
+		forecastRequest.endPoint.should.exist;
+		forecastRequest.key.should.exist;
 	});
 
 	it('Should build an HTTP request.', function() {
-		var request = weatherRequest.buildHttpRequest();
+		var request = forecastRequest.buildHttpRequest();
 
 		request.should.be.a('string');
 	});
 
 	it('Should make an XHR request.', function() {
-		weatherRequest.makeRequest().then(function(response) {
+		forecastRequest.makeRequest().then(function(response) {
 			response.should.be.a('string');
 		});
 	});
