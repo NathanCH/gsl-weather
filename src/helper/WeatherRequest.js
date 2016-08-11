@@ -76,11 +76,11 @@ class WeatherRequest {
 			table: [
 				{ 
 					label: 'High',
-					value: Math.round(response.body.main.temp_max)
+					value: Math.round(response.body.main.temp_max) + '° C'
 				},
 				{ 
 					label: 'Low',
-					value: Math.round(response.body.main.temp_min)
+					value: Math.round(response.body.main.temp_min) + '° C'
 				},
 				{ 
 					label: 'Humidity',

@@ -76,7 +76,7 @@ class ForecastRequest {
 		response.body.list.forEach((elm, index) => {
 			formatted.push({
 				label: this.convertDate(elm.dt),
-				value: elm.weather[0].main + ' with a high of ' + Math.round(elm.temp.max) + '°'
+				value: elm.weather[0].main + ' with a high of ' + Math.round(elm.temp.max) + '° C'
 			})
 		});
 

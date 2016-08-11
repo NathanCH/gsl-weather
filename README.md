@@ -8,11 +8,16 @@ Requires npm and NodeJS.
 
 * Webpack
 * Babel (ES6)
-* React
+* React w/ JSX
 * SCSS
 * Mocha/Chai (Test Suite)
+* HTML5 Geolocation
 
 ## Build
+
+Clone
+
+    https://github.com/NathanCH/gsl-weather.git
 
 Install dependencies:
 

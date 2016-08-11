@@ -21,10 +21,10 @@ class Table extends Component{
 		
 		return (
 			<table className="Table">
-				<thead>
+				<thead className="Table__head">
 					<TableRow label={this.props.title} />
 				</thead>
-				<tbody>
+				<tbody className="Table__body">
 					{rows}
 				</tbody>
 			</table>

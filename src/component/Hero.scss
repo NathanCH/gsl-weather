@@ -2,22 +2,25 @@
 	background: #eee;
 	text-align: center;
 	padding: 75px 0;
+	position: relative;
+	color: #3D626F;
 
 	/* Background Types */
-	&--clouds{ background: #f5cd8a; }
-	&--rain{ background: #E0EFF1; }
-	&--drizzle{ background: #c7e4ec; }
-	&--clear{ background: #a2ceea; }
+	&--clouds{ background: #d0d9e0; color: #363c40; }
+	&--rain{ background: #3082CB; color: white; }
+	&--drizzle{ background: #276aa5; color: white; }
+	&--clear{ background: #df8d18; color: white;  }
 
 	&__weather{
 		font-weight: bold;
-		font-size: 20px;
+		font-size: 22px;
+		position: relative;
+		z-index: 1;
 	}
 
 	&__city{
 		font-size: 16px;
 		line-height: 30px;
-		opacity: .8;
 	}
 
 	&__temperature{
@@ -25,7 +28,6 @@
 		font-size: 70px;
 		margin: 10px 0;
 		position: relative;
-		opacity: .75;
 
 		&:after{
 			content: "\00b0";
@@ -33,7 +35,18 @@
 			top: 10px;
 			display: inline-block;
 			font-size: 32px;
-			margin-left: 10px;
+			margin-left: 8px;
 		}
+	}
+
+	&:before{
+		content: "";
+		position: absolute;
+		z-index: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: linear-gradient(rgba(0,0,0,0) 25%, rgba(0,0,0,.1) 100%) repeat scroll 0 0;
 	}
 }
