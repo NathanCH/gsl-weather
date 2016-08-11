@@ -76,7 +76,7 @@ class ForecastRequest {
 		response.body.list.forEach((elm, index) => {
 			formatted.push({
 				label: this.convertDate(elm.dt),
-				value: elm.weather[0].main + ' with a high of ' + Math.round(elm.temp.max) + '° C'
+				value: Math.round(elm.temp.max) + '° C / ' + Math.round(elm.temp.min) + '° C'
 			})
 		});
 
@@ -92,7 +92,7 @@ class ForecastRequest {
 	 * @return string 
 	 */
 	convertDate(timestamp) {
-		return moment.unix(timestamp).format('MMM D');
+		return moment.unix(timestamp).format('dddd');
 	}
 }
 

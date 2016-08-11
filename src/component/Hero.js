@@ -18,15 +18,15 @@ class Hero extends Component{
 
 		return(
 			<div className={weatherClass}>
-				<div className="Hero__weather">
-					{this.props.data.weather}
-				</div>
-				<span className="Hero__city">
-					{this.props.data.city}
-				</span>
 				<h1 className="Hero__temperature">
 					{roundedTemperature}
 				</h1>
+				<div className="Hero__weather">
+					{this.props.data.weather}
+				</div>
+				<div className="Hero__city">
+					{this.props.data.city}
+				</div>
 			</div>
 		);
 	}

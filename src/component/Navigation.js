@@ -22,7 +22,7 @@ class Navigation extends Component{
 		
 		return (
 			<ul className={activePanelClass}>
-				<li className="Navigation__item" onClick={(e) => this.handleClick(e)} data-type="weather">Current</li>
+				<li className="Navigation__item" onClick={(e) => this.handleClick(e)} data-type="weather">Now</li>
 				<li className="Navigation__item" onClick={(e) => this.handleClick(e)} data-type="forecast">Forecast</li>
 			</ul>
 		);

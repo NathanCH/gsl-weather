@@ -87,7 +87,7 @@ class App extends Component{
 		}
 
 		else if(this.state.panel == 'weather') {
-			panel = <Table data={this.state.weather} title="Current Conditions" />;
+			panel = <Table data={this.state.weather} title="Weather" />;
 		}
 
 		else if(this.state.panel == 'forecast') {
